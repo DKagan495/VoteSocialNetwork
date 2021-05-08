@@ -22,8 +22,8 @@ public class VoteSocialNetworkMVCDispatcherServletInitilizer extends AbstractAnn
         return new String[]{"/"};
     }
     public void onStartup(ServletContext servletContext) throws ServletException {
-        super.onStartup(ServletContext);
-        registerHiddenFieldFilter(ServletContext);
+        super.onStartup(servletContext);
+        registerHiddenFieldFilter(servletContext);
     }
     private void registerHiddenFieldFilter(ServletContext servletContext)
     {
