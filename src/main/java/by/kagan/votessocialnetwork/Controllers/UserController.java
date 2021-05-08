@@ -19,7 +19,8 @@ public class UserController {
     }
 
     @GetMapping("/startpage")
-    public String toStartPage(){
+    public String toStartPage(Model model){
+        model.addAttribute("user", new User());
         return "startpage";
     }
     @GetMapping("/registration")
@@ -38,7 +39,19 @@ public class UserController {
         return "successregistraion";
     }
     @GetMapping("/userlist")
-    public String showUserList(){
+    public String showUserList(Model model){
+        model.addAttribute("users", userDAO.showUserList());
         return "userlist";
+    }
+    @PostMapping("/startpage")
+    public String doLogin(@ModelAttribute("user") User user){
+        if(userDAO.tryToLogInAccount(user)) {
+            return "suclog";
+            //user.setLogInSuccessful(false);
+        }
+        else {
+            user.setLogInSuccessful(true);
+            return "startpage";
+        }
     }
 }

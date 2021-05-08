@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Component
 public class UserDAO {
-    private boolean isUserLogSuccessful;
+    private boolean isUserLogSuccessful = false;
     private String URL;
     private String USERNAME, PASSWORD;
     private static int LOG_ID = 1;
@@ -22,7 +22,18 @@ public class UserDAO {
         userList.add(user);
         LOG_ID++;
     }
-    public List showUserList(){
+    public List<User> showUserList(){
         return userList;
+    }
+    public boolean tryToLogInAccount(User user){
+        for(int i = 0; i < LOG_ID; i++){
+            if(userList.get(i).getEmail().equals(user.getEmail()) && userList.get(i).getPassword().equals(user.getPassword())) {
+                isUserLogSuccessful = true;
+                break;
+            }
+            else
+                isUserLogSuccessful = false;
+        }
+        return isUserLogSuccessful;
     }
 }

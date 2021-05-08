@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Hello</title>
 </head>
-<body text="red">
+<body text="green">
     <h1>Vote Social Network</h1>
     <h3>Please, Log In(Sign Up & Log In)</h3>
+    <form method="post" th:object="${user}">
+        <label for="email" style="color: blueviolet">Email:</label><input type="text" th:field="*{email}" id="email">
+        <br/>
+        <label for="password" style="color: blueviolet">Password:</label><input type="password" th:field="*{password}" id="password">
+        <br/>
+        <input type="submit" value="Log In">
+        <div style="color: red" th:if="${user.isLogInSuccessful}">
+            <p>Please, check you email or password</p>
+        </div>
+    </form>
     <a href="/registration">Sign Up</a>
 </body>
 </html>

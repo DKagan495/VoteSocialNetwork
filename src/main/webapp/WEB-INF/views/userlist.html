@@ -5,8 +5,8 @@
     <title>User List</title>
 </head>
 <body>
-<div th:each = "user : ${userList}">
-    <h2>(id = ${user.getId()})}" th:text = "${user.getName() + ' ' + user.getSurname()}">user</h2>>
+<div th:each = "user : ${users}">
+    <a href="/startpage" th:text = "${user.getName() + ' ' + user.getSurname()}">user</a>>
 </div>
 </body>
 </html>
