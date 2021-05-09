@@ -4,10 +4,7 @@ import by.kagan.votessocialnetwork.DAOs.UserDAO;
 import by.kagan.votessocialnetwork.Models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping()
@@ -43,15 +40,28 @@ public class UserController {
         model.addAttribute("users", userDAO.showUserList());
         return "userlist";
     }
-    @PostMapping("/startpage")
+    @PostMapping("/suclogpage")
     public String doLogin(@ModelAttribute("user") User user){
         if(userDAO.tryToLogInAccount(user)) {
-            return "suclog";
-            //user.setLogInSuccessful(false);
+            return "redirect:/suclogpage";
         }
         else {
             user.setLogInSuccessful(true);
             return "startpage";
         }
+    }
+    @GetMapping("/suclogpage")
+    public String toSuccessfulLogInPage(){
+        return "suclog";
+    }
+    @GetMapping("/{id}")
+    public String toUserPage(@PathVariable("id") int id, Model model){
+        model.addAttribute("user", userDAO.showUserPage(id));
+        return "userpage";
+    }
+    @GetMapping("/mypage")
+    public String toMyPage(Model model){
+        model.addAttribute("user", userDAO.showMyPage());
+        return "personalpage";
     }
 }

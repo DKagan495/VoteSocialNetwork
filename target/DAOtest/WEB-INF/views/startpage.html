@@ -7,7 +7,7 @@
 <body text="green">
     <h1>Vote Social Network</h1>
     <h3>Please, Log In(Sign Up & Log In)</h3>
-    <form method="post" th:object="${user}">
+    <form method="post" th:action="@{/suclogpage}" th:object="${user}">
         <label for="email" style="color: blueviolet">Email:</label><input type="text" th:field="*{email}" id="email">
         <br/>
         <label for="password" style="color: blueviolet">Password:</label><input type="password" th:field="*{password}" id="password">

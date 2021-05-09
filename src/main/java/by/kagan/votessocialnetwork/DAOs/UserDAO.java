@@ -12,6 +12,7 @@ public class UserDAO {
     private String URL;
     private String USERNAME, PASSWORD;
     private static int LOG_ID = 1;
+    private int loginId;
     private Connection connection;
     private List<User> userList;{
        userList = new ArrayList<>();
@@ -29,11 +30,18 @@ public class UserDAO {
         for(int i = 0; i < LOG_ID; i++){
             if(userList.get(i).getEmail().equals(user.getEmail()) && userList.get(i).getPassword().equals(user.getPassword())) {
                 isUserLogSuccessful = true;
+                loginId = LOG_ID;
                 break;
             }
             else
                 isUserLogSuccessful = false;
         }
         return isUserLogSuccessful;
+    }
+    public User showUserPage(int id){
+        return userList.get(id-1);
+    }
+    public User showMyPage(){
+        return userList.get(loginId-1);
     }
 }
