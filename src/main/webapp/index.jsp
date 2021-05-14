@@ -1,5 +1,8 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<%
+    String redirectURL = "http://localhost:8069/startpage";
+    response.sendRedirect(redirectURL);
+%>
 </body>
 </html>

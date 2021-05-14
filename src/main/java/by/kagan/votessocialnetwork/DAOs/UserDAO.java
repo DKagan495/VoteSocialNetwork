@@ -3,6 +3,7 @@ package by.kagan.votessocialnetwork.DAOs;
 import by.kagan.votessocialnetwork.Models.User;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.Cookie;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ public class UserDAO {
     private String URL;
     private String USERNAME, PASSWORD;
     private static int LOG_ID = 1;
-    private int loginId;
+    private static int loginId;
     private Connection connection;
     private List<User> userList;{
        userList = new ArrayList<>();
@@ -30,7 +31,7 @@ public class UserDAO {
         for(int i = 0; i < LOG_ID; i++){
             if(userList.get(i).getEmail().equals(user.getEmail()) && userList.get(i).getPassword().equals(user.getPassword())) {
                 isUserLogSuccessful = true;
-                loginId = LOG_ID;
+                loginId = i+1;
                 break;
             }
             else
@@ -43,5 +44,9 @@ public class UserDAO {
     }
     public User showMyPage(){
         return userList.get(loginId-1);
+    }
+    public void logOut(){
+        isUserLogSuccessful = false;
+        loginId = 0;
     }
 }
