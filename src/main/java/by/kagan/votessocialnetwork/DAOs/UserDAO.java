@@ -2,8 +2,10 @@ package by.kagan.votessocialnetwork.DAOs;
 
 import by.kagan.votessocialnetwork.Models.User;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +29,13 @@ public class UserDAO {
     public List<User> showUserList(){
         return userList;
     }
-    public boolean tryToLogInAccount(User user){
+    public boolean tryToLogInAccount(User user, HttpSession httpSession){
         for(int i = 0; i < LOG_ID; i++){
             if(userList.get(i).getEmail().equals(user.getEmail()) && userList.get(i).getPassword().equals(user.getPassword())) {
                 isUserLogSuccessful = true;
-                loginId = i+1;
+                httpSession.setAttribute("loginId", i);
+                loginId = (int)httpSession.getAttribute("loginId");
+                System.out.println(loginId);
                 break;
             }
             else
@@ -43,7 +47,7 @@ public class UserDAO {
         return userList.get(id-1);
     }
     public User showMyPage(){
-        return userList.get(loginId-1);
+        return userList.get(loginId);
     }
     public void logOut(){
         isUserLogSuccessful = false;

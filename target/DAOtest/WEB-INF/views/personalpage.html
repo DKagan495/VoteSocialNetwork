@@ -5,12 +5,41 @@
     <title>Your page</title>
     <style>
         h1{
-            font-family: "Arial Unicode MS";
+            font-family: "Calibri";
             font-size: 100px;
             background-color: blueviolet;
             border-radius: 30px;
             text-align: center;
-            
+
+        }
+        a{
+            text-decoration: none;
+            background-color: springgreen;
+            font-family: Calibri;
+            border-radius: 9px;
+            border-color: red;
+            border-bottom-color: red;
+
+        }
+        a:hover{
+            font-size: 39px;
+            font-family: Calibri;
+            border-radius: 9px;
+            border-color: red;
+            border-bottom-color: red;
+        }
+        h2{
+            font-size: 48px;
+            font-family: Calibri;
+        }
+        h4{
+            color: blueviolet;
+            text-decoration: none;
+        }
+        h3{
+            font-size: 36px;
+            text-decoration: dotted;
+            font-family: Calibri;
         }
     </style>
 </head>
@@ -22,6 +51,7 @@
     <h3 th:text="'You study at ' + ${user.getUniversity()}">user</h3>
     <h3 th:text="'Your workplace is' + ${user.getWorkplace}">user</h3>
     <h3 th:text="'Your email:' + ${user.getEmail}">user</h3>
-    <h4><a href="/logout">Log Out</a></h4>
+    <h3><a href="">My votes</a></h3>
+    <h3><a href="/logout">Log Out</a></h3>
 </body>
 </html>

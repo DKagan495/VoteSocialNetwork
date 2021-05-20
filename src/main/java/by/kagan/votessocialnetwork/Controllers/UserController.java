@@ -53,8 +53,8 @@ public class UserController {
         return "userlist";
     }
     @PostMapping("/suclogpage")
-    public String doLogin(@ModelAttribute("user") User user){
-        if(userDAO.tryToLogInAccount(user)) {
+    public String doLogin(@ModelAttribute("user") User user, HttpSession session){
+        if(userDAO.tryToLogInAccount(user, session)) {
             isLogIn = true;
             return "redirect:/suclogpage";
         }

@@ -1,7 +1,10 @@
 package by.kagan.votessocialnetwork.Models;
 
+import javax.validation.constraints.Min;
+
 public class User {
     private int id = 0;
+    @Min(0)
     private int age;
     private int numberOfVotes = 0;
     private String name, surname, patronymic, university, workplace, email, password;
