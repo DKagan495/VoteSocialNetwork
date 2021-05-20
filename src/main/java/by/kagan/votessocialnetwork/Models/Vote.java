@@ -22,6 +22,7 @@ public class Vote {
         this.howManyAnswers = howManyAnswers;
         this.availibleToUndoUserChoose = availibleToUndoUserChoose;
         this.usersAnswerId = usersAnswerId;
+
     }
 
     public int getVoteId() {
