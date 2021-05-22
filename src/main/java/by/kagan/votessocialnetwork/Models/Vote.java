@@ -1,8 +1,15 @@
 package by.kagan.votessocialnetwork.Models;
 
+//import jdk.internal.org.jline.utils.AnsiWriter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Vote {
+    private int userId;
     private int voteId;
     private String voteName;
+    private boolean voteType;
     private boolean anonStatus;
     private boolean canUserBeAnonymous;
     private int availibleNumberOfAnswers;
@@ -13,16 +20,36 @@ public class Vote {
 
     }
 
-    public Vote(int voteId, String voteName, boolean anonStatus, boolean canUserBeAnonymous, int availibleNumberOfAnswers, int howManyAnswers, boolean availibleToUndoUserChoose, int usersAnswerId) {
+    public Vote(int voteId, String voteName, boolean anonStatus, boolean voteType, boolean canUserBeAnonymous, int availibleNumberOfAnswers, int howManyAnswers, boolean availibleToUndoUserChoose, int usersAnswerId) {
         this.voteId = voteId;
         this.voteName = voteName;
         this.anonStatus = anonStatus;
+        this.voteType = voteType;
         this.canUserBeAnonymous = canUserBeAnonymous;
         this.availibleNumberOfAnswers = availibleNumberOfAnswers;
         this.howManyAnswers = howManyAnswers;
         this.availibleToUndoUserChoose = availibleToUndoUserChoose;
         this.usersAnswerId = usersAnswerId;
+    }
 
+    public boolean isVoteType() {
+        return voteType;
+    }
+
+    public void setVoteType(boolean voteType) {
+        this.voteType = voteType;
+    }
+
+
+
+
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getVoteId() {

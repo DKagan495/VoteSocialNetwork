@@ -5,11 +5,14 @@ import by.kagan.votessocialnetwork.Models.User;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping()
@@ -38,7 +41,9 @@ public class UserController {
         return "registrationform";
     }
     @PostMapping("/registration")
-    public String doRegistration(@ModelAttribute("user") User user){
+    public String doRegistration(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
+        if(bindingResult.hasErrors())
+            return "registrationform";
         userDAO.addUserToDatabase(user);
         //userDAO.regTest();
         return "successregistraion";
@@ -53,9 +58,11 @@ public class UserController {
         return "userlist";
     }
     @PostMapping("/suclogpage")
-    public String doLogin(@ModelAttribute("user") User user, HttpSession session){
+    public String doLogin(@ModelAttribute("user") User user, HttpSession session, RedirectAttributes redirectAttributes){
         if(userDAO.tryToLogInAccount(user, session)) {
+            user.setHttpSession(session);
             isLogIn = true;
+            redirectAttributes.addFlashAttribute("user", user);
             return "redirect:/suclogpage";
         }
         else {

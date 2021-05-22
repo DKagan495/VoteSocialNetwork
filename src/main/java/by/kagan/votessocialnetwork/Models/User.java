@@ -1,13 +1,35 @@
 package by.kagan.votessocialnetwork.Models;
 
-import javax.validation.constraints.Min;
+import javax.servlet.http.HttpSession;
+import javax.validation.constraints.*;
 
 public class User {
+    private HttpSession httpSession;
     private int id = 0;
-    @Min(0)
+    @NotNull(message = "Enter age please")
+    @Min(value = 16, message = "Our network only for 16+")
+    @Max(value = 123, message = "You`re very old for this application")
     private int age;
     private int numberOfVotes = 0;
-    private String name, surname, patronymic, university, workplace, email, password;
+    @NotEmpty(message = "Enter name please")
+    @Size(min = 2, max = 30, message = "Invalid name")
+    private String name;
+    @NotEmpty(message = "Enter surname please")
+    @Size(min = 2, max = 30, message = "Invalid surname")
+    private String surname;
+    @NotEmpty(message = "Enter patronymic please")
+    @Size(min = 5, max = 36, message = "Invalid patronymic")
+    private String patronymic;
+    @NotEmpty(message = "Enter a university please, this is not optional")
+    private String university;
+    @NotEmpty(message = "Enter the workplace, please. This is not optional")
+    private String workplace;
+    @NotEmpty(message = "Enter email please")
+    @Email(message = "Email should be email. Not random stack of symbols")
+    private String email;
+    @NotEmpty(message = "Password is very important thing, please create it!")
+    @Size(min = 8, message = "Password must be contain >7 characters")
+    private String password;
     private boolean logInSuccessful = false;
     public User() {
 
@@ -21,6 +43,14 @@ public class User {
         this.workplace = workplace;
         this.email = email;
         this.password = password;
+    }
+
+    public HttpSession getHttpSession() {
+        return httpSession;
+    }
+
+    public void setHttpSession(HttpSession httpSession) {
+        this.httpSession = httpSession;
     }
 
     public int getId() {

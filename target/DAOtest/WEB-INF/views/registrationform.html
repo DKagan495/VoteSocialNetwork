@@ -7,20 +7,28 @@
 <body>
 <h1>REGISTRATION</h1>
     <form method="POST" th:object="${user}">
+        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
         <label for="name">Name:</label><input type="text" th:field="*{name}" id="name">
         <br/>
+        <div style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname error</div>
         <label for="surname">Surname:</label><input type="text" th:field="*{surname}" id="surname">
         <br/>
+        <div style="color: red" th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}">Patronymic error</div>
         <label for="patronymic">Patronymic:</label><input type="text" th:field="*{patronymic}" id="patronymic">
         <br/>
+        <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
         <label for="age">Age:</label><input type="text" th:field="*{age}" id="age">
         <br/>
+        <div style="color: red" th:if="${#fields.hasErrors('university')}" th:errors="*{university}">University error</div>
         <label for="university">University:</label><input type="text" th:field="*{university}" id="university">
         <br/>
+        <div style="color: red" th:if="${#fields.hasErrors('workplace')}" th:errors="*{workplace}">Workplace error</div>
         <label for="workplace">Workplace:</label><input type="text" th:field="*{workplace}" id="workplace">
         <br/>
+        <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name error</div>
         <label for="email">Email:</label><input type="text" th:field="*{email}" id="email">
         <br/>
+        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div>
         <label for="password">Password:</label><input type="password" th:field="*{password}" id="password">
         <br/>
         <input type="submit" value="Create account">
