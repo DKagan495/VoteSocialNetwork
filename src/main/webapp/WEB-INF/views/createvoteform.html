@@ -12,9 +12,11 @@
 </head>
 <body>
 <form method="post" th:action="@{/answers}" th:object="${vote}">
+    <div style="color: red" th:if="${#fields.hasErrors('voteName')}" th:errors="*{voteName}">voteName error</div>
     <label for="voteName">Name:</label><input type="text" th:field="*{voteName}" id="voteName"><br/>
     <label for="anonStatus">Anonymous:</label><input type="checkbox" th:field="*{anonStatus}" id="anonStatus"><br/>
     <label for="voteType">With many variances of answer:</label><input type="checkbox" th:field="*{voteType}" id="voteType"><br/>
+    <div style="color: red" th:if="${#fields.hasErrors('howManyAnswers')}" th:errors="*{howManyAnswers}">Name error</div>
     <label for="howManyAnswers">How many answers?</label><input type="text" th:field="*{howManyAnswers}" id="howManyAnswers"><br/>
     <label for="availibleToUndoUserChoose">Can user undo his choose?</label><input type="checkbox" th:field="*{availibleToUndoUserChoose}" id="availibleToUndoUserChoose"><br/>
     <label for="canUserBeAnonymous">Can user be Anonymous?</label><input type="checkbox" th:field="*{canUserBeAnonymous}" id="canUserBeAnonymous"><br/>

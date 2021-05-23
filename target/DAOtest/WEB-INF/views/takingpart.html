@@ -5,10 +5,12 @@
     <title>Vote!</title>
 </head>
 <body>
-
+<h2>This is preview of your vote</h2>
+<form th:method="post" th:object="${answers}">
     <div th:each="answer: ${answers}">
-        <h4 th:text="${answer.getAnswerContent}">answer</h4>
+       <label for="ansResult" th:text="${answer.getAnswerContent()}">answer</label><input type="checkbox" th:field="*{ansResult}" id="ansResult">
     </div>
-
+</form>
+<a href="/setanswers">Go to set answers</a>
 </body>
 </html>

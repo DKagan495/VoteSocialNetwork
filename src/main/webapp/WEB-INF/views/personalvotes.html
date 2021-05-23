@@ -7,7 +7,7 @@
 <body>
     <a href="/new">Create new vote</a>
 <div th:each="vote: ${votes}">
-    <a href="/ans" th:text = "${vote.getVoteName()}">vote</a>>
+    <a href="/see" th:text = "${vote.getVoteName()}">vote</a>>
 </div>
 </body>
 </html>

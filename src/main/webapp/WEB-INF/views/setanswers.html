@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Set ans</title>
+</head>
+<body>
+<h2 th:text="${vote.getHowManyAnswers}"></h2>
+<form th:method="PATCH" th:action="@{/sucreated}" th:object="${answer}">
+    <div th:each="answer: ${answers}">
+        <label for="answerContent" th:text="${answer.getAnswerId()}">answerId</label><input type="text" th:field="*{answerContent}" id="answerContent">
+    </div>
+    <input type="submit" value="Primenit">
+</form>
+</div>
+</body>
+</html>

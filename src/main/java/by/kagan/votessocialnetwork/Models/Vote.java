@@ -2,22 +2,28 @@ package by.kagan.votessocialnetwork.Models;
 
 //import jdk.internal.org.jline.utils.AnsiWriter;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Vote {
     private int userId;
     private int voteId;
+    @NotEmpty(message = "Please, give your vote a name!")
     private String voteName;
     private boolean voteType;
     private boolean anonStatus;
     private boolean canUserBeAnonymous;
     private int availibleNumberOfAnswers;
+    @Min(value = 2, message = "Minimum 2 variances of answer")
     private int howManyAnswers;
     private boolean availibleToUndoUserChoose;
     private int usersAnswerId;
+    private List<Answer> Answers;
     public Vote(){
-
+        Answers = new ArrayList<>(12);
     }
 
     public Vote(int voteId, String voteName, boolean anonStatus, boolean voteType, boolean canUserBeAnonymous, int availibleNumberOfAnswers, int howManyAnswers, boolean availibleToUndoUserChoose, int usersAnswerId) {
@@ -30,6 +36,15 @@ public class Vote {
         this.howManyAnswers = howManyAnswers;
         this.availibleToUndoUserChoose = availibleToUndoUserChoose;
         this.usersAnswerId = usersAnswerId;
+        Answers = new ArrayList<>(12);
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public boolean isVoteType() {
@@ -40,16 +55,12 @@ public class Vote {
         this.voteType = voteType;
     }
 
-
-
-
-
-    public int getUserId() {
-        return userId;
+    public List<Answer> getAnswers() {
+        return Answers;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAnswers(List<Answer> answers) {
+        Answers = answers;
     }
 
     public int getVoteId() {

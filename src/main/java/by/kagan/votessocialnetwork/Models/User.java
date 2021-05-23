@@ -2,31 +2,41 @@ package by.kagan.votessocialnetwork.Models;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.*;
-
+import javax.persistence.*;
+@Entity
+@Table(name = "users")
 public class User {
-    private HttpSession httpSession;
+    @Id
     private int id = 0;
     @NotNull(message = "Enter age please")
     @Min(value = 16, message = "Our network only for 16+")
     @Max(value = 123, message = "You`re very old for this application")
     private int age;
+    @Column(name = "numbervotes")
     private int numberOfVotes = 0;
+    @Column(name = "name")
     @NotEmpty(message = "Enter name please")
     @Size(min = 2, max = 30, message = "Invalid name")
     private String name;
+    @Column(name = "surname")
     @NotEmpty(message = "Enter surname please")
     @Size(min = 2, max = 30, message = "Invalid surname")
     private String surname;
+    @Column(name="patronymic")
     @NotEmpty(message = "Enter patronymic please")
     @Size(min = 5, max = 36, message = "Invalid patronymic")
     private String patronymic;
+    @Column(name = "university")
     @NotEmpty(message = "Enter a university please, this is not optional")
     private String university;
+    @Column(name = "workplace")
     @NotEmpty(message = "Enter the workplace, please. This is not optional")
     private String workplace;
+    @Column(name = "email")
     @NotEmpty(message = "Enter email please")
     @Email(message = "Email should be email. Not random stack of symbols")
     private String email;
+    @Column(name = "password")
     @NotEmpty(message = "Password is very important thing, please create it!")
     @Size(min = 8, message = "Password must be contain >7 characters")
     private String password;
@@ -45,13 +55,6 @@ public class User {
         this.password = password;
     }
 
-    public HttpSession getHttpSession() {
-        return httpSession;
-    }
-
-    public void setHttpSession(HttpSession httpSession) {
-        this.httpSession = httpSession;
-    }
 
     public int getId() {
         return id;

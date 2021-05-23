@@ -4,15 +4,25 @@ public class Answer {
     private int userId;
     private int voteId;
     private int answerId;
+    private boolean ansResult;
     private String answerContent;
     public Answer(){
 
     }
-    public Answer(int userId, int voteId, int answerId, String answerContent){
+    public Answer(int userId, int voteId, int answerId, boolean ansResult, String answerContent){
         this.userId = userId;
         this.voteId = voteId;
         this.answerId = answerId;
+        this.ansResult = ansResult;
         this.answerContent = answerContent;
+    }
+
+    public boolean getAnsResult() {
+        return ansResult;
+    }
+
+    public void setAnsResult(boolean ansResult) {
+        this.ansResult = ansResult;
     }
 
     public void setAnswerContent(String answerContent) {
